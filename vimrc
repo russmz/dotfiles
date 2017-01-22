@@ -80,7 +80,7 @@ autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
 "}
 
 "{ indentLine
-let g:indentLine_char='鈹?
+let g:indentLine_char='┆'
 let g:indentLine_enabled = 1
 "}
 
