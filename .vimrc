@@ -1,3 +1,20 @@
+" 定义快捷键的前缀，即 <Leader>
+let mapleader=";"
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+" 设置快捷键遍历子窗口
+nnoremap nw <C-W><C-W>
+
+" 开启实时搜索功能
+set incsearch
+" 搜索时大小写不敏感
+set ignorecase
+" vim 自身命令行模式智能补全
+set wildmenu
+
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -8,183 +25,73 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" filesystem
-Plugin 'scrooloose/nerdtree'          " A tree explorer plugin
-Plugin 'kien/ctrlp.vim'               " Fuzzy file, buffer, etc finder
-
-" color scheme
-Plugin 'vim-scripts/molokai'          " The monokai scheme for TextMate
-Plugin 'vim-scripts/Solarized'        " Beautiful colorscheme
-
-" ftplugin
-Plugin 'tmhedberg/SimpylFold'         " No-BS Python code folding
-
-" code utility
-Plugin 'vim-scripts/taglist.vim'      " Source code browser
-Plugin 'Yggdroot/indentLine'          " Display the indention levels
-Plugin 'Valloric/YouCompleteMe'       " A code-completion engine
-Plugin 'jiangmiao/auto-pairs'         " Brackets, parens, quotes in pair
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Yggdroot/indentLine'
+Plugin 'kshenoy/vim-signature'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugins Configure
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"{ nerdtree
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$'] "ignore files in NERDTree
-let NERDTreeChDirMode=1
-let NERDTreeShowBookmarks=1
-let NERDTreeWinSize=25
-nnoremap <F2>  :NERDTreeToggle<CR>
-"}
-
-"{ ctrlp.vim
-"}
-
-"{ molokai
-"colorscheme molokai
-"}
-
-"{ Solarized
-let g:solarized_termcolors=256
+" 配色方案
 set background=dark
-colorscheme solarized
-"}
-
-"{ SimpylFold
-"set foldmethod=indent
-"set foldlevel=99
-let g:SimpylFold_docstring_preview = 1
-"let g:SimpylFold_fold_docstring = 0
-"let g:SimpylFold_fold_import = 0
-autocmd BufWinEnter *.py setlocal foldexpr=SimpylFold(v:lnum) foldmethod=expr
-autocmd BufWinLeave *.py setlocal foldexpr< foldmethod<
-"}
-
-"{ taglist.vim
-"}
-
-"{ indentLine
-let g:indentLine_char='┆'
-let g:indentLine_enabled = 1
-"}
-
-"{ YouCompleteMe
-"}
-
-"{ auto-pairs
-"}
-
-"{ $powerline
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
-set t_Co=256
-let g:minBufExplForceSyntaxEnable = 1
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
-
-if ! has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
-endif
-
+"colorscheme solarized
+colorscheme molokai
+" 辅助信息
+" 总是显示状态栏
 set laststatus=2
-"}
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Basic Configure
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Set Configure
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set encoding=utf-8
-set so=7
-set colorcolumn=80
-set ignorecase
-set smartcase
-set hlsearch
-set showmatch
-set lazyredraw
+" 设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+" 显示光标当前位置
+set ruler
+" 开启行号显示
+set number
+" 高亮显示当前行/列
 set cursorline
 set cursorcolumn
-set number
+" 高亮显示搜索结果
+set hlsearch
+" 禁止折行
 set nowrap
-set autoread
-set autoindent
-set smartindent
+" 开启语法高亮功能
+syntax enable
+" 允许用指定语法高亮配色方案替换默认方案
+syntax on
+" 将制表符扩展为空格
+set expandtab
+" 设置编辑时制表符占用空格数
+set tabstop=4
+" 设置格式化时制表符占用空格数
+set shiftwidth=4
+" 让 vim 把连续数量的空格视为一个制表符
+set softtabstop=4
+" 基于缩进或语法进行代码折叠
+"set foldmethod=indent
+set foldmethod=syntax
+" 启动 vim 时关闭折叠代码
+set nofoldenable
 
+" YCM 插件配置
+nnoremap <leader>jc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinition<CR>
+" YCM 补全菜单配色
+" 菜单
+highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+" 选中项
+highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+" 补全功能在注释中同样有效
+let g:ycm_complete_in_comments=1
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Let Configure
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
-let mapleader = ","
-let g:mapleader = ","
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Map Configure
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-" ctags
-nnoremap <F12> :!ctags -R<CR>
-" fold and unfold
-nnoremap <space> za
-" fast saving
-nnoremap <leader>w :w!<CR>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto Command
-" #Flag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
-    \ set textwidth=79 |
-    \ set expandtab |
-    \ set autoindent |
-    \ set fileformat=unix |
-
-au BufNewFile,BufRead *.js,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2 |
+" 使用 NERDTree 插件查看工程文件。设置快捷键，速记：file list
+nmap <Leader>fl :NERDTreeToggle<CR>
+" 设置NERDTree子窗口宽度
+let NERDTreeWinSize=25
+" 设置NERDTree子窗口位置
+let NERDTreeWinPos="left"
