@@ -8,16 +8,16 @@
 
 ## Quick Start
 
-### 1. Set up vim
-
-```bash
-brew install vim
-```
-
-### 2. Set up Vundle:
+### 1. Set up Vundle:
 
 ```bash
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+```
+
+### 2. Copy vimrc to ~/.vimrc
+
+```bash
+cp vimrc ~/.vimrc
 ```
 
 ### 3. Set up Plugins
@@ -36,5 +36,5 @@ Or open vim and type following command on normal mode:
 
 ```bash
 cd ~/.vim/bundle/YouCompleteMe
-./install.sh
+python install.py
 ```
