@@ -42,8 +42,8 @@ filetype plugin indent on    " required
 
 " 配色方案
 set background=dark
-"colorscheme solarized
-colorscheme molokai
+colorscheme solarized
+"colorscheme molokai
 " 辅助信息
 " 总是显示状态栏
 set laststatus=2
@@ -56,6 +56,8 @@ set number
 " 高亮显示当前行/列
 set cursorline
 set cursorcolumn
+" 高亮第81列
+set colorcolumn=81
 " 高亮显示搜索结果
 set hlsearch
 " 禁止折行
