@@ -1,3 +1,8 @@
+[color]
+    ui = true
 [user]
 	name = russmz
 	email = russmz@163.com
+[alias]
+    s = status
+    ss = status -s
