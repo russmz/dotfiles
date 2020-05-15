@@ -6,3 +6,4 @@
 [alias]
     s = status
     ss = status -s
+    d = diff
