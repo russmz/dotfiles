@@ -97,3 +97,4 @@ nmap <Leader>fl :NERDTreeToggle<CR>
 let NERDTreeWinSize=25
 " 设置NERDTree子窗口位置
 let NERDTreeWinPos="left"
+
